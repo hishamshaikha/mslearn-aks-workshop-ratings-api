@@ -1,10 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: hishamshaikhamslearnaksworkshopratingsapi
+  name: ratings-api
 spec:
-    type: LoadBalancer
-    ports:
-    - port: 3000 
-    selector:
-        app: hishamshaikhamslearnaksworkshopratingsapi
+  selector:
+    app: ratings-api
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+  type: ClusterIP
