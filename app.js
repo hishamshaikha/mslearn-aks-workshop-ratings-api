@@ -52,6 +52,7 @@ promise.then(
     var Rate = mongoose.model("Rate");
     var Item = mongoose.model("Item");
     var Site = mongoose.model("Site");
+    var Test = mongoose.model("Test");
 
     // Check if the items are empty, insert mock data
     Item.count({}, function(err, c) {
