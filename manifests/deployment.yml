@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: ratings-api
-        image: ratingsapp.azurecr.io/ratings-api:v1 # IMPORTANT: update with your own repository
+        image: ratingsapp.azurecr.io/ratings-api # IMPORTANT: update with your own repository
         imagePullPolicy: Always
         ports:
         - containerPort: 3000 # the application listens to this port
