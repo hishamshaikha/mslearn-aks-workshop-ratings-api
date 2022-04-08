@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const fs = require('fs')
 
+console.dir('The pipeline is working!!!!.');
+
 var app = express();
 
 process.env.MONGODB_URI = fs.readFileSync('/mnt/secrets-store/MONGOCONNECTION', 'utf8')
