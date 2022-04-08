@@ -10,19 +10,14 @@ spec:
     metadata:
       labels:
         app: ratings-api # the label for the pods and the deployments
+        aadpodidbinding: my-pod-identity
     spec:
       containers:
       - name: ratings-api
-        image: ratingapp.azurecr.io/ratingsapi # IMPORTANT: update with your own repository
+        image: ratingsapp.azurecr.io/ratings-api:v1 # IMPORTANT: update with your own repository
         imagePullPolicy: Always
         ports:
         - containerPort: 3000 # the application listens to this port
-        env:
-        - name: MONGODB_URI # the application expects to find the MongoDB connection details in this environment variable
-          valueFrom:
-            secretKeyRef:
-              name: mongosecret # the name of the Kubernetes secret containing the data
-              key: MONGOCONNECTION # the key inside the Kubernetes secret containing the data
         resources:
           requests: # minimum resources required
             cpu: 250m
@@ -38,3 +33,14 @@ spec:
           httpGet:
             port: 3000
             path: /healthz
+        volumeMounts:
+        - name: secrets-store01-inline
+          mountPath: "/mnt/secrets-store"
+          readOnly: true
+      volumes:
+      - name: secrets-store01-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "azure-kvname-podid"

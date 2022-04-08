@@ -6,8 +6,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const fs = require('fs')
 
 var app = express();
+
+process.env.MONGODB_URI = fs.readFileSync('/mnt/secrets-store/MONGOCONNECTION', 'utf8')
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -52,7 +55,6 @@ promise.then(
     var Rate = mongoose.model("Rate");
     var Item = mongoose.model("Item");
     var Site = mongoose.model("Site");
-    var Test = mongoose.model("Test");
 
     // Check if the items are empty, insert mock data
     Item.count({}, function(err, c) {
