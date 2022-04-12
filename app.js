@@ -12,7 +12,7 @@ console.dir('The pipeline is working!!!!.');
 
 var app = express();
 
-process.env.MONGODB_URI = fs.readFileSync('/mnt/secrets-store/MONGOCONNECTION', 'utf8')
+process.env.MONGODB_URI = fs.readFileSync('/mnt/secrets-store/PROD-MONGOCONNECTION', 'utf8')
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
