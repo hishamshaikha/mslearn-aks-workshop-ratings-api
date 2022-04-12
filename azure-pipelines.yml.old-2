@@ -3,7 +3,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- dev
+- master
 
 resources:
 - repo: self
@@ -11,12 +11,12 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '6c20aee2-5b65-4f65-a33b-0b69af7d65a6'
-  imageRepository: 'ratingsapi'
-  containerRegistry: 'ratingapp.azurecr.io'
+  dockerRegistryServiceConnection: '8b1db52a-0883-457a-92aa-cecb344ecdc7'
+  imageRepository: 'ratings-api'
+  containerRegistry: 'ratingsapp.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
-  imagePullSecret: 'ratingapp995256f7-auth'
+  imagePullSecret: 'ratingsapp242b-auth'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -53,7 +53,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'hishamshaikhamslearnaksworkshopratingsapi-4941.ratingsapp-dev'
+    environment: 'hishamshaikhamslearnaksworkshopratingsapi.sandbox'
     strategy:
       runOnce:
         deploy:
