@@ -52,7 +52,7 @@ if(process.env.MONGODB_URI == undefined) {
 var promise = mongoose.connect(process.env.MONGODB_URI, connectOptions);
 promise.then(
   () => {
-    console.dir('CONNECTED TO ' + process.env.MONGODB_URI);
+    console.dir('CONNECTED TO DEV ' + process.env.MONGODB_URI);
 
     var Rate = mongoose.model("Rate");
     var Item = mongoose.model("Item");
